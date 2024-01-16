@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 
 @Configuration
-public class MongoConfig {
+public class MongoDatabaseConfig {
 
     @Value("${mongodb.uri}")
     private String mongoURI;

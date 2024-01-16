@@ -17,4 +17,6 @@ public interface ArtistService {
     Artist insertArtist(ArtistDTO artistDTO);
 
     List<Album> getAllAlbumsFromArtist(String artistId);
+
+    List<Artist> insertBulkArtist(List<Artist> artists);
 }
