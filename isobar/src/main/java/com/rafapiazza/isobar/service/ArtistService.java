@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface ArtistService {
     List<Artist> getAllArtists();
-    
+
 
     Artist updateArtist(String artistId, ArtistDTO artistDTO);
 
@@ -19,4 +19,6 @@ public interface ArtistService {
     List<Album> getAllAlbumsFromArtist(String artistId);
 
     List<Artist> insertBulkArtist(List<Artist> artists);
+
+    List<Artist> findArtistByName(String name);
 }

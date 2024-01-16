@@ -1,6 +1,7 @@
 package com.rafapiazza.isobar.controller;
 
 import com.rafapiazza.isobar.domain.dto.TrackDTO;
+import com.rafapiazza.isobar.domain.model.Album;
 import com.rafapiazza.isobar.domain.model.Track;
 import com.rafapiazza.isobar.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +35,8 @@ public class TrackController {
         return ResponseEntity.accepted().body(trackService.updateTrack(artistId, trackDTO));
     }
 
+    @GetMapping(value = {"/search/{name}"}, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Track>> findTrackByName(@PathVariable("name") String name) {
+        return ResponseEntity.accepted().body(trackService.findTrackByName(name));
+    }
 }

@@ -4,11 +4,10 @@ import com.rafapiazza.isobar.domain.dto.ArtistDTO;
 import com.rafapiazza.isobar.domain.model.Album;
 import com.rafapiazza.isobar.domain.model.Artist;
 import com.rafapiazza.isobar.exception.ArtistNotFoundException;
-import com.rafapiazza.isobar.repository.AlbumRepository;
 import com.rafapiazza.isobar.repository.ArtistRepository;
 import com.rafapiazza.isobar.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,7 +45,7 @@ public class ArtistServiceImpl implements ArtistService {
 
     public Artist insertArtist(ArtistDTO artistDTO) {
         Artist artist = new Artist(artistDTO);
-        List<Album> albums =  getAllAlbumsFromArtist(artist.getId());
+        List<Album> albums = getAllAlbumsFromArtist(artist.getId());
         artist.setAlbums(albums);
         this.artistRepository.save(artist);
         return artist;
@@ -55,6 +54,12 @@ public class ArtistServiceImpl implements ArtistService {
     public List<Artist> insertBulkArtist(List<Artist> artists) {
         this.artistRepository.saveAll(artists);
         return artists;
+    }
+
+
+    @Cacheable(value = "artistCache", key = "#name")
+    public List<Artist> findArtistByName(String name) {
+        return this.artistRepository.findByNameStartingWith(name);
     }
 
     public List<Album> getAllAlbumsFromArtist(String artistId) {

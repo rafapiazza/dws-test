@@ -2,6 +2,7 @@ package com.rafapiazza.isobar.controller;
 
 import com.rafapiazza.isobar.domain.dto.AlbumDTO;
 import com.rafapiazza.isobar.domain.model.Album;
+import com.rafapiazza.isobar.domain.model.Artist;
 import com.rafapiazza.isobar.domain.model.Track;
 import com.rafapiazza.isobar.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,8 @@ public class AlbumController {
         return ResponseEntity.accepted().body(albumService.getAllTracksFromAlbum(albumId));
     }
 
+    @GetMapping(value = {"/search/{name}"}, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Album>> findAllbumByName(@PathVariable("name") String name) {
+        return ResponseEntity.accepted().body(albumService.findAlbumByName(name));
+    }
 }

@@ -7,6 +7,7 @@ import com.rafapiazza.isobar.exception.AlbumNotFoundException;
 import com.rafapiazza.isobar.repository.AlbumRepository;
 import com.rafapiazza.isobar.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +51,10 @@ public class AlbumServiceImpl implements AlbumService {
                 .orElseThrow(AlbumNotFoundException::new);
 
         return album.getTracks();
+    }
+
+    @Cacheable(value = "albumCache", key = "#name")
+    public List<Album> findAlbumByName(String name) {
+        return this.albumRepository.findByNameStartingWith(name);
     }
 }

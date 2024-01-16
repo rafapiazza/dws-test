@@ -16,4 +16,6 @@ public interface AlbumService {
     Album updateAlbum(String albumId, AlbumDTO albumDTO);
 
     List<Track> getAllTracksFromAlbum(String albumId);
+
+    List<Album> findAlbumByName(String name);
 }

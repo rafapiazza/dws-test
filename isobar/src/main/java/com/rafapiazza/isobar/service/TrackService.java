@@ -13,4 +13,6 @@ public interface TrackService {
     Track insertTrack(TrackDTO trackDTO);
 
     Track updateTrack(String trackId, TrackDTO trackDTO);
+
+    List<Track> findTrackByName(String name);
 }

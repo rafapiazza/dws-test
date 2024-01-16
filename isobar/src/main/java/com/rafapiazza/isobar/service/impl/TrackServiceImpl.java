@@ -6,6 +6,7 @@ import com.rafapiazza.isobar.exception.TrackNotFoundException;
 import com.rafapiazza.isobar.repository.TrackRepository;
 import com.rafapiazza.isobar.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,11 @@ public class TrackServiceImpl implements TrackService {
         Track track = new Track(trackDTO);
         this.trackRepository.save(track);
         return track;
+    }
+
+    @Cacheable(value = "trackCache", key = "#name")
+    public List<Track> findTrackByName(String name) {
+        return this.trackRepository.findByNameStartingWith(name);
     }
 
 }
