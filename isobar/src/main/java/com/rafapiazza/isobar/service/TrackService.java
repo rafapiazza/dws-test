@@ -12,7 +12,5 @@ public interface TrackService {
 
     Track insertTrack(TrackDTO trackDTO);
 
-    List<Track> getAllTracksFromAlbum(String album);
-
-    Track updateTrack(TrackDTO trackDTO);
+    Track updateTrack(String trackId, TrackDTO trackDTO);
 }

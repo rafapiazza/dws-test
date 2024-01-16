@@ -2,6 +2,7 @@ package com.rafapiazza.isobar.service;
 
 import com.rafapiazza.isobar.domain.dto.AlbumDTO;
 import com.rafapiazza.isobar.domain.model.Album;
+import com.rafapiazza.isobar.domain.model.Track;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface AlbumService {
 
     List<Album> getAllAlbums();
 
-    Album updateAlbum(AlbumDTO albumDTO);
+    Album updateAlbum(String albumId, AlbumDTO albumDTO);
 
-    List<Album> getAllTracksFromAlbum(String artistId);
+    List<Track> getAllTracksFromAlbum(String albumId);
 }

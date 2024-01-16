@@ -12,7 +12,7 @@ public interface ArtistService {
     List<Artist> getAllArtists();
     
 
-    Artist updateArtist(ArtistDTO artistDTO);
+    Artist updateArtist(String artistId, ArtistDTO artistDTO);
 
     Artist insertArtist(ArtistDTO artistDTO);
 

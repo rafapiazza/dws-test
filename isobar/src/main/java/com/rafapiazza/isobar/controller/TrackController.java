@@ -28,9 +28,10 @@ public class TrackController {
     }
 
 
-    @PostMapping(value = {"/update"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Track> updateTrack(@RequestBody TrackDTO trackDTO) {
-        return ResponseEntity.accepted().body(trackService.updateTrack(trackDTO));
+    @PostMapping(value = {"/{trackId}/update"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Track> updateTrack(@PathVariable("artistId") String artistId,
+                                             @RequestBody TrackDTO trackDTO) {
+        return ResponseEntity.accepted().body(trackService.updateTrack(artistId, trackDTO));
     }
-    
+
 }

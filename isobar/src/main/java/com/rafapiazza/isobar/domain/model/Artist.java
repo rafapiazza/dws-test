@@ -1,5 +1,6 @@
 package com.rafapiazza.isobar.domain.model;
 
+import com.rafapiazza.isobar.domain.dto.ArtistDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,15 @@ public class Artist {
     private String image;
     private String genre;
     private String biography;
-    private String numPlays;
+    private Integer numPlays;
     private List<Album> albums;
+
+    public Artist(ArtistDTO artistDTO) {
+        this.name = artistDTO.name();
+        this.image = artistDTO.image();
+        this.genre = artistDTO.genre();
+        this.biography = artistDTO.biography();
+        this.numPlays = artistDTO.numPlays();
+        this.albums = artistDTO.albums();
+    }
 }

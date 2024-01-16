@@ -31,9 +31,10 @@ public class ArtistController {
     }
 
 
-    @PostMapping(value = {"/update"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Artist> updateArtist(@RequestBody ArtistDTO artistDTO){
-        return ResponseEntity.accepted().body(artistService.updateArtist(artistDTO));
+    @PostMapping(value = {"/{artistId}/update"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Artist> updateArtist(@PathVariable("artistId") String artistId,
+                                               @RequestBody ArtistDTO artistDTO){
+        return ResponseEntity.accepted().body(artistService.updateArtist(artistId, artistDTO));
     }
 
     @GetMapping(value = {"/{artistId}"}, produces = APPLICATION_JSON_VALUE)

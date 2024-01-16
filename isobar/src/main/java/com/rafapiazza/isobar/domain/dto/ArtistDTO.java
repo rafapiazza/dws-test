@@ -4,6 +4,6 @@ import com.rafapiazza.isobar.domain.model.Album;
 
 import java.util.List;
 
-public record ArtistDTO(String name, String image, String genre, String biography, String numPlays,
+public record ArtistDTO(String name, String image, String genre, String biography, Integer numPlays,
                         List<Album> albums) {
 }

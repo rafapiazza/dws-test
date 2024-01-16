@@ -29,13 +29,14 @@ public class AlbumController {
     }
 
 
-    @PostMapping(value = {"/update"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Album> updateAlbum(@RequestBody AlbumDTO albumDTO){
-        return ResponseEntity.accepted().body(albumService.updateAlbum(albumDTO));
+    @PostMapping(value = {"/update/{albumId}"}, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Album> updateAlbum(@PathVariable("albumId") String albumId,
+                                             @RequestBody AlbumDTO albumDTO){
+        return ResponseEntity.accepted().body(albumService.updateAlbum(albumId, albumDTO));
     }
 
     @GetMapping(value = {"/{albumId}"}, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Album>> getAllAlbumsFromArtist(@PathVariable("albumId") String albumId) {
+    public ResponseEntity<List<Track>> getAllAlbumsFromArtist(@PathVariable("albumId") String albumId) {
         return ResponseEntity.accepted().body(albumService.getAllTracksFromAlbum(albumId));
     }
 

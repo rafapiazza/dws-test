@@ -1,5 +1,6 @@
 package com.rafapiazza.isobar.domain.model;
 
+import com.rafapiazza.isobar.domain.dto.TrackDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,4 +16,9 @@ public class Track {
     private String id;
     private String name;
     private Integer duration;
+
+    public Track(TrackDTO trackDTO) {
+        this.name = trackDTO.name();
+        this.duration = trackDTO.duration();
+    }
 }
